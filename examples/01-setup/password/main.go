@@ -17,11 +17,7 @@ func main() {
 	}
 	defer auth.Close()
 
-	kr, err := keyring.New("/tmp/keyring.db", auth)
-	if err != nil {
-		log.Fatal(err)
-	}
-
+	kr := keyring.New("/tmp/keyring.db", auth)
 	if _, err := kr.SetupPassword("testpassword"); err != nil {
 		log.Fatal(err)
 	}

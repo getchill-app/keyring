@@ -17,7 +17,7 @@ func NewTestKeyring(t *testing.T) (*keyring.Keyring, func()) {
 	auth, err := auth.NewDB(authPath)
 	require.NoError(t, err)
 
-	vlt, err := keyring.New(path, auth)
+	kr := keyring.New(path, auth)
 	require.NoError(t, err)
 
 	closeFn := func() {
@@ -25,13 +25,13 @@ func NewTestKeyring(t *testing.T) (*keyring.Keyring, func()) {
 		require.NoError(t, err)
 		err = os.Remove(authPath)
 		require.NoError(t, err)
-		err = vlt.Lock()
+		err = kr.Lock()
 		require.NoError(t, err)
 		err = os.Remove(path)
 		require.NoError(t, err)
 	}
 
-	return vlt, closeFn
+	return kr, closeFn
 }
 
 func NewTestKeyringWithSetup(t *testing.T, password string) (*keyring.Keyring, func()) {

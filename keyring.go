@@ -14,7 +14,7 @@ import (
 )
 
 // ErrLocked if locked.
-var ErrLocked = errors.New("vault is locked")
+var ErrLocked = errors.New("keyring is locked")
 
 // ErrInvalidAuth if auth is invalid.
 var ErrInvalidAuth = auth.ErrInvalidAuth
@@ -33,12 +33,12 @@ type Keyring struct {
 }
 
 // New vault.
-func New(path string, auth *auth.DB) (*Keyring, error) {
+func New(path string, auth *auth.DB) *Keyring {
 	kr := &Keyring{
 		path: path,
 		auth: auth,
 	}
-	return kr, nil
+	return kr
 }
 
 // Auth returns auth db.

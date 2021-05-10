@@ -32,10 +32,7 @@ func main() {
 	defer auth.Close()
 
 	// Keyring
-	kr, err := keyring.New("/tmp/keyring.db", auth)
-	if err != nil {
-		log.Fatal(err)
-	}
+	kr := keyring.New("/tmp/keyring.db", auth)
 	kr.SetFIDO2Plugin(fido2Plugin)
 
 	// Registering new auth method requires unlock

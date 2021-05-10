@@ -58,9 +58,9 @@ func TestLocked(t *testing.T) {
 	err = kr.Lock()
 	require.NoError(t, err)
 	_, err = kr.Key(keys.RandID("test"))
-	require.EqualError(t, err, "vault is locked")
+	require.EqualError(t, err, "keyring is locked")
 	_, err = kr.Keys()
-	require.EqualError(t, err, "vault is locked")
+	require.EqualError(t, err, "keyring is locked")
 }
 
 func TestInvalidPassword(t *testing.T) {
